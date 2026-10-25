@@ -1,0 +1,16 @@
+{
+  "short_name": "RentoBit",
+  "name": "RentoBit - Drive Your Future. Earn Every Day.",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#07121E",
+  "theme_color": "#155EEF",
+  "display": "standalone",
+  "orientation": "portrait"
+}
