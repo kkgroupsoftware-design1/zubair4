@@ -1,0 +1,150 @@
+import React from 'react';
+import { ASSETS } from '../../assets/images';
+
+interface PaymentBrandIconProps {
+  iconType?: 'jazzcash' | 'easypaisa' | 'usdt' | 'btc' | 'eth' | 'bank' | string;
+  iconUrl?: string;
+  className?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+}
+
+export const PaymentBrandIcon: React.FC<PaymentBrandIconProps> = ({
+  iconType = 'bank',
+  iconUrl,
+  className = '',
+  size = 'md',
+}) => {
+  const sizeClasses = {
+    sm: 'w-7 h-7 min-w-[28px]',
+    md: 'w-9 h-9 min-w-[36px]',
+    lg: 'w-11 h-11 min-w-[44px]',
+    xl: 'w-13 h-13 min-w-[52px]',
+  };
+
+  const containerSize = sizeClasses[size] || sizeClasses.md;
+
+  // If custom icon URL is provided, display custom image
+  if (iconUrl && iconUrl.trim() !== '') {
+    return (
+      <div
+        className={`${containerSize} rounded-2xl overflow-hidden flex items-center justify-center p-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 shadow-md ${className}`}
+      >
+        <img
+          src={iconUrl}
+          alt="Payment Brand"
+          className="w-full h-full object-contain rounded-xl"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = 'none';
+          }}
+        />
+      </div>
+    );
+  }
+
+  // 1. Exact Official User-Provided JazzCash Real Logo Image
+  if (iconType === 'jazzcash') {
+    return (
+      <div
+        className={`${containerSize} rounded-2xl bg-white flex items-center justify-center p-1 shadow-md shadow-red-950/15 border border-red-500/20 relative overflow-hidden shrink-0 ${className}`}
+        title="JazzCash"
+      >
+        <img
+          src={ASSETS.jazzcashLogo}
+          alt="JazzCash Official"
+          className="w-full h-full object-contain drop-shadow-sm"
+        />
+      </div>
+    );
+  }
+
+  // 2. Exact Official User-Provided Easypaisa Real Logo Image
+  if (iconType === 'easypaisa') {
+    return (
+      <div
+        className={`${containerSize} rounded-2xl bg-white flex items-center justify-center p-1 shadow-md shadow-emerald-950/15 border border-emerald-500/20 relative overflow-hidden shrink-0 ${className}`}
+        title="Easypaisa"
+      >
+        <img
+          src={ASSETS.easypaisaLogo}
+          alt="Easypaisa Official"
+          className="w-full h-full object-contain drop-shadow-sm"
+        />
+      </div>
+    );
+  }
+
+  // 3. Official USDT (Tether USD) Real Brand Icon
+  if (iconType === 'usdt') {
+    return (
+      <div
+        className={`${containerSize} rounded-2xl bg-gradient-to-br from-[#26A17B] via-[#1F8666] to-[#105640] flex items-center justify-center p-2 shadow-md shadow-teal-950/30 border border-teal-300/50 relative overflow-hidden shrink-0 ${className}`}
+        title="USDT (Tether USD)"
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm" fill="none">
+          <circle cx="50" cy="50" r="48" fill="#26A17B" />
+          {/* Tether ₮ Bar & Symbol */}
+          <path
+            d="M20 26 L80 26 L80 35 L56 35 L56 45 C 74 46, 85 51, 85 56 C 85 61, 74 66, 56 67 L56 86 L44 86 L44 67 C 26 66, 15 61, 15 56 C 15 51, 26 46, 44 45 L44 35 L20 35 Z M 50 49 C 34 49, 23 53, 23 56 C 23 59, 34 63, 50 63 C 66 63, 77 59, 77 56 C 77 53, 66 49, 50 49 Z"
+            fill="#FFFFFF"
+          />
+        </svg>
+      </div>
+    );
+  }
+
+  // 4. Official Bitcoin (BTC) Real Brand Icon
+  if (iconType === 'btc') {
+    return (
+      <div
+        className={`${containerSize} rounded-2xl bg-gradient-to-br from-[#F7931A] via-[#E8800C] to-[#B85C00] flex items-center justify-center p-2 shadow-md shadow-amber-950/30 border border-amber-300/50 relative overflow-hidden shrink-0 ${className}`}
+        title="Bitcoin (BTC)"
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm" fill="none">
+          <circle cx="50" cy="50" r="48" fill="#F7931A" />
+          {/* Bitcoin ₿ Bold Emblem */}
+          <path
+            d="M66 44 C 68 41, 67 34, 59 33 L 59 20 L 53 20 L 53 32 L 47 32 L 47 20 L 41 20 L 41 32 L 28 32 L 28 39 L 34 39 C 36 39, 37 40, 37 42 L 37 67 C 37 69, 36 70, 34 70 L 28 70 L 28 77 L 41 77 L 41 89 L 47 89 L 47 77 L 53 77 L 53 89 L 59 89 L 59 77 C 71 76, 74 68, 73 59 C 73 52, 70 47, 66 44 Z M 47 41 L 57 41 C 61 41, 63 43, 63 47 C 63 50, 61 52, 57 52 L 47 52 Z M 59 68 L 47 68 L 47 58 L 59 58 C 63 58, 65 60, 65 63 C 65 66, 63 68, 59 68 Z"
+            fill="#FFFFFF"
+          />
+        </svg>
+      </div>
+    );
+  }
+
+  // 5. Official Ethereum (ETH) Real Brand Icon
+  if (iconType === 'eth') {
+    return (
+      <div
+        className={`${containerSize} rounded-2xl bg-gradient-to-br from-[#627EEA] via-[#4A63D8] to-[#2B3B96] flex items-center justify-center p-2 shadow-md shadow-indigo-950/30 border border-indigo-300/50 relative overflow-hidden shrink-0 ${className}`}
+        title="Ethereum (ETH)"
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm" fill="none">
+          <circle cx="50" cy="50" r="48" fill="#627EEA" />
+          {/* Ethereum Diamond Facets */}
+          <polygon points="50,14 50,48 24,59" fill="#FFFFFF" fillOpacity="0.65" />
+          <polygon points="50,14 76,59 50,48" fill="#FFFFFF" fillOpacity="0.95" />
+          <polygon points="50,52 50,86 24,63" fill="#FFFFFF" fillOpacity="0.65" />
+          <polygon points="50,52 76,63 50,86" fill="#FFFFFF" fillOpacity="0.95" />
+          <polygon points="50,48 50,52 76,59" fill="#FFFFFF" fillOpacity="0.8" />
+          <polygon points="50,48 24,59 50,52" fill="#FFFFFF" fillOpacity="0.4" />
+        </svg>
+      </div>
+    );
+  }
+
+  // 6. Default / Bank Wire Escrow Emblem
+  return (
+    <div
+      className={`${containerSize} rounded-2xl bg-gradient-to-br from-[#1E40AF] via-[#1D4ED8] to-[#0F172A] flex items-center justify-center p-2 shadow-md shadow-blue-950/30 border border-blue-400/50 relative overflow-hidden shrink-0 ${className}`}
+      title="Bank Wire"
+    >
+      <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm" fill="none">
+        <rect width="100" height="100" rx="20" fill="#1E40AF" />
+        <path
+          d="M50 16 L16 36 L84 36 Z M22 42 L32 42 L32 72 L22 72 Z M45 42 L55 42 L55 72 L45 72 Z M68 42 L78 42 L78 72 L68 72 Z M14 76 L86 76 L86 84 L14 84 Z"
+          fill="#FFFFFF"
+        />
+      </svg>
+    </div>
+  );
+};

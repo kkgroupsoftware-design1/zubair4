@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+@layer base {
+  :root {
+    --bg-base: #f4f7fb;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-subtle: #f8fafc;
+    --border-color: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    color-scheme: light;
+  }
+
+  :root.dark, [data-theme="dark"] {
+    --bg-base: #07121e;
+    --bg-surface: #091a2e;
+    --bg-card: #091a2e;
+    --bg-card-subtle: #06121f;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    color-scheme: dark;
+  }
+}
+
+/* -------------------------------------------------------------
+   LIGHT THEME DESIGN ENGINE
+   ------------------------------------------------------------- */
+.light {
+  color: #0f172a;
+  background-color: #f4f7fb;
+}
+
+.light body {
+  background-color: #f4f7fb;
+  color: #0f172a;
+}
+
+/* Inputs & Form controls in Light mode */
+.light input:not([type="checkbox"]):not([type="radio"]),
+.light select,
+.light textarea {
+  color: #0f172a !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Scrollbar polish */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+  border-radius: 9999px;
+}
+
+/* Smooth transitions for theme switching */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15%       { transform: translateX(-6px); }
+  30%       { transform: translateX(6px); }
+  45%       { transform: translateX(-5px); }
+  60%       { transform: translateX(5px); }
+  75%       { transform: translateX(-3px); }
+  90%       { transform: translateX(3px); }
+}
